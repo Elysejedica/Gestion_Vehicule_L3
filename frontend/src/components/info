@@ -1,0 +1,248 @@
+🚘 Exemples de plaques d'immatriculation
+
+Les formats varient selon les pays. Voici quelques exemples typiques :
+Pays	Exemple de plaque	Format courant
+Madagascar	1234 AB 01	4 chiffres + 2 lettres + 2 chiffres
+France	AB-123-CD	2 lettres + 3 chiffres + 2 lettres
+Allemagne	B AB 1234	Ville (1 lettre) + 2 lettres + 4 chiffres
+USA (Calif.)	1ABC234	1 chiffre + 3 lettres + 3 chiffres
+🔧 Exemples de numéros de série (VIN)
+
+Le VIN (Vehicle Identification Number) est un code unique de 17 caractères :
+Exemple VIN	Détails
+1HGCM82633A123456	Honda Accord 2003
+WDB1234561A654321	Mercedes-Benz
+JTDKB20U093123456	Toyota Prius
+VF1ABCDEF12345678	Renault
+
+📌 Le 10ᵉ caractère indique l’année du modèle (ex. : A = 2010, B = 2011, etc.).
+🛠️ Exemples de numéros moteur
+
+Le numéro moteur est souvent gravé sur le bloc moteur et varie selon le constructeur :
+Constructeur	Exemple numéro moteur	Détails
+Toyota	1NZ-FE 1234567	Moteur essence 1.5L
+Mercedes-Benz	M111.940 10 123456	Moteur 2.0L essence
+Peugeot	TU3JP 1234567	Moteur 1.4L essence
+Volkswagen	CBZB 123456	Moteur 1.2 TSI
+
+Tu veux que je t’aide à intégrer une vérification automatique de ces formats dans ton 📋 Catégories de véhicules
+
+    Véhicules légers
+
+        Voitures particulières (berline, citadine, coupé)
+
+        SUV et crossovers
+
+        Pick-up
+
+    Véhicules utilitaires
+
+        Camionnettes
+
+        Fourgons
+
+        Véhicules de livraison
+
+    Véhicules de transport en commun
+
+        Bus
+
+        Minibus
+
+    Poids lourds
+
+        Camions
+
+        Tracteurs routiers
+
+        Camions-bennes
+
+    Véhicules spécialisés
+
+        Tracteurs agricoles
+
+        Engins de chantier (pelleteuses, bulldozers)
+
+        Ambulances et véhicules de secours
+
+    Deux-roues et trois-roues
+
+        Motos
+
+        Scooters
+
+        Tricycles motorisés
+
+
+
+
+
+INSERT INTO api_categorie (code_cat) VALUES ('A : Mini-citadines'),('B : itadines polyvalentes'),('C : Compactes'),('D : Familiales'),('E : Routières / Prestige'),('F : Luxe'),('J : SUV / 4x4'),('M : Monospaces / MPV'),('S : Sportives'),('VU : Véhicules utilitaires'),('PL : Poids lourds'),('TC : Engins de chantier'),('AG : Engins agricoles'),('2R : Deux-roues'),('3R : Trois-roues'),('BUS : Transport en commun'),('SP : Véhicules spécialisés');
+Server [localhost]:
+Database [postgres]:
+Port [5432]:
+Username [postgres]:
+Password for user postgres:
+psql (17.5)
+WARNING: Console code page (850) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# /c keycloack
+postgres-#
+postgres-# \c keycloack
+connection to server at "localhost" (::1), port 5432 failed: FATAL:  la base de données « keycloack » n'existe pas
+Previous connection kept
+postgres-# \c keycloak
+You are now connected to database "keycloak" as user "postgres".
+keycloak-# 7/Jul/2025 11:59:01] "POST /api/categories/ HTTP/1.1" 400 65
+keycloak-# Bad Request: /api/categories/
+keycloak-# [17/Jul/2025 11:59:03] "POST /api/categories/ HTTP/1.1" 400 65
+keycloak-# Bad Request: /api/categories/
+keycloak-# [17/Jul/2025 11:59:03] "POST /api/categories/ HTTP/1.1" 400 65
+keycloak-# Bad Request: /api/categories/
+keycloak-# [17/Jul/2025 11:59:03] "POST /api/categories/ HTTP/1.1" 400 65
+keycloak-# Bad Request: /api/categories/
+keycloak-# [17/Jul/2025 11:59:03] "POST /api/categories/ HTTP/1.1" 400 65
+keycloak-# Bad Request: /api/categories/
+keycloak-# [17/Jul/2025 11:59:04] "POST /api/categories/ HTTP/1.1" 400 6
+keycloak-# INSERT INTO Marque (nom_mar, lettre) VALUES('Abarth', 'A'), ('Acura', 'A'), ('Alfa Romeo', 'A'), ('Aston Martin', 'A'), ('Audi', 'A'),('Bentley', 'B'), ('BMW', 'B'), ('Bugatti', 'B'), ('Buick', 'B'),('Cadillac', 'C'), ('Chevrolet', 'C'), ('Chrysler', 'C'), ('Citroën', 'C'),('Dacia', 'D'), ('Daihatsu', 'D'), ('Dodge', 'D'), ('DS Automobiles', 'D'),('Ferrari', 'F'), ('Fiat', 'F'), ('Fisker', 'F'), ('Ford', 'F'),('Genesis', 'G'), ('GMC', 'G'), ('Great Wall', 'G'),('Honda', 'H'), ('Hummer', 'H'), ('Hyundai', 'H'),('Infiniti', 'I'), ('Isuzu', 'I'), ('Iveco', 'I'),('Jaguar', 'J'), ('Jeep', 'J'),('Kia', 'K'), ('Koenigsegg', 'K'),('Lamborghini', 'L'), ('Land Rover', 'L'), ('Lexus', 'L'), ('Lotus', 'L'),('Maserati', 'M'), ('Mazda', 'M'), ('McLaren', 'M'), ('Mercedes-Benz', 'M'), ('Mitsubishi', 'M'),('Nissan', 'N'), ('Nio', 'N'),('Opel', 'O'),('Pagani', 'P'), ('Peugeot', 'P'), ('Porsche', 'P'), ('Proton', 'P'),('Renault', 'R'), ('Rolls-Royce', 'R'), ('Rover', 'R'),('Saab', 'S'), ('Seat', 'S'), ('Skoda', 'S'), ('Smart', 'S'), ('Subaru', 'S'), ('Suzuki', 'S'),('Tata', 'T'), ('Tesla', 'T'), ('Toyota', 'T'), ('Triumph', 'T'),('Volkswagen', 'V'), ('Volvo', 'V'),('Zenvo', 'Z'), ('Zastava', 'Z');
+ERREUR:  erreur de syntaxe sur ou près de « / »
+LINE 1: /c keycloack
+        ^
+keycloak=# INSERT INTO Marque (nom_mar, lettre) VALUES('Abarth', 'A'), ('Acura', 'A'), ('Alfa Romeo', 'A'), ('Aston Martin', 'A'), ('Audi', 'A'),('Bentley', 'B'), ('BMW', 'B'), ('Bugatti', 'B'), ('Buick', 'B'),('Cadillac', 'C'), ('Chevrolet', 'C'), ('Chrysler', 'C'), ('Citroën', 'C'),('Dacia', 'D'), ('Daihatsu', 'D'), ('Dodge', 'D'), ('DS Automobiles', 'D'),('Ferrari', 'F'), ('Fiat', 'F'), ('Fisker', 'F'), ('Ford', 'F'),('Genesis', 'G'), ('GMC', 'G'), ('Great Wall', 'G'),('Honda', 'H'), ('Hummer', 'H'), ('Hyundai', 'H'),('Infiniti', 'I'), ('Isuzu', 'I'), ('Iveco', 'I'),('Jaguar', 'J'), ('Jeep', 'J'),('Kia', 'K'), ('Koenigsegg', 'K'),('Lamborghini', 'L'), ('Land Rover', 'L'), ('Lexus', 'L'), ('Lotus', 'L'),('Maserati', 'M'), ('Mazda', 'M'), ('McLaren', 'M'), ('Mercedes-Benz', 'M'), ('Mitsubishi', 'M'),('Nissan', 'N'), ('Nio', 'N'),('Opel', 'O'),('Pagani', 'P'), ('Peugeot', 'P'), ('Porsche', 'P'), ('Proton', 'P'),('Renault', 'R'), ('Rolls-Royce', 'R'), ('Rover', 'R'),('Saab', 'S'), ('Seat', 'S'), ('Skoda', 'S'), ('Smart', 'S'), ('Subaru', 'S'), ('Suzuki', 'S'),('Tata', 'T'), ('Tesla', 'T'), ('Toyota', 'T'), ('Triumph', 'T'),('Volkswagen', 'V'), ('Volvo', 'V'),('Zenvo', 'Z'), ('Zastava', 'Z');
+ERREUR:  la relation « marque » n'existe pas
+LINE 1: INSERT INTO Marque (nom_mar, lettre) VALUES('Abarth', 'A'), ...
+                    ^
+keycloak=# INSERT INTO api_marque (nom_mar, lettre) VALUES('Abarth', 'A'), ('Acura', 'A'), ('Alfa Romeo', 'A'), ('Aston Martin', 'A'), ('Audi', 'A'),('Bentley', 'B'), ('BMW', 'B'), ('Bugatti', 'B'), ('Buick', 'B'),('Cadillac', 'C'), ('Chevrolet', 'C'), ('Chrysler', 'C'), ('Citroën', 'C'),('Dacia', 'D'), ('Daihatsu', 'D'), ('Dodge', 'D'), ('DS Automobiles', 'D'),('Ferrari', 'F'), ('Fiat', 'F'), ('Fisker', 'F'), ('Ford', 'F'),('Genesis', 'G'), ('GMC', 'G'), ('Great Wall', 'G'),('Honda', 'H'), ('Hummer', 'H'), ('Hyundai', 'H'),('Infiniti', 'I'), ('Isuzu', 'I'), ('Iveco', 'I'),('Jaguar', 'J'), ('Jeep', 'J'),('Kia', 'K'), ('Koenigsegg', 'K'),('Lamborghini', 'L'), ('Land Rover', 'L'), ('Lexus', 'L'), ('Lotus', 'L'),('Maserati', 'M'), ('Mazda', 'M'), ('McLaren', 'M'), ('Mercedes-Benz', 'M'), ('Mitsubishi', 'M'),('Nissan', 'N'), ('Nio', 'N'),('Opel', 'O'),('Pagani', 'P'), ('Peugeot', 'P'), ('Porsche', 'P'), ('Proton', 'P'),('Renault', 'R'), ('Rolls-Royce', 'R'), ('Rover', 'R'),('Saab', 'S'), ('Seat', 'S'), ('Skoda', 'S'), ('Smart', 'S'), ('Subaru', 'S'), ('Suzuki', 'S'),('Tata', 'T'), ('Tesla', 'T'), ('Toyota', 'T'), ('Triumph', 'T'),('Volkswagen', 'V'), ('Volvo', 'V'),('Zenvo', 'Z'), ('Zastava', 'Z');
+INSERT 0 67
+keycloak=# INSERT INTO api_marque (nom_mar, lettre) VALUES('Abarth', 'A'), ('Acura', 'A'), ('Alfa Romeo', 'A'), ('Aston Martin', 'A'), ('Audi', 'A'),('Bentley', 'B'), ('BMW', 'B'), ('Bugatti', 'B'), ('Buick', 'B'),('Cadillac', 'C'), ('Chevrolet', 'C'), ('Chrysler', 'C'), ('Citroën', 'C'),('Dacia', 'D'), ('Daihatsu', 'D'), ('Dodge', 'D'), ('DS Automobiles', 'D'),('Ferrari', 'F'), ('Fiat', 'F'), ('Fisker', 'F'), ('Ford', 'F'),('Genesis', 'G'), ('GMC', 'G'), ('Great Wall', 'G'),('Honda', 'H'), ('Hummer', 'H'), ('Hyundai', 'H'),('Infiniti', 'I'), ('Isuzu', 'I'), ('Iveco', 'I'),('Jaguar', 'J'), ('Jeep', 'J'),('Kia', 'K'), ('Koenigsegg', 'K'),('Lamborghini', 'L'), ('Land Rover', 'L'), ('Lexus', 'L'), ('Lotus', 'L'),('Maserati', 'M'), ('Mazda', 'M'), ('McLaren', 'M'), ('Mercedes-Benz', 'M'), ('Mitsubishi', 'M'),('Nissan', 'N'), ('Nio', 'N'),('Opel', 'O'),('Pagani', 'P'), ('Peugeot', 'P'), ('Porsche', 'P'), ('Proton', 'P'),('Renault', 'R'), ('Rolls-Royce', 'R'), ('Rover', 'R'),('Saab', 'S'), ('Seat', 'S'), ('Skoda', 'S'), ('Smart', 'S'), ('Subaru', 'S'), ('Suzuki', 'S'),('Tata', 'T'), ('Tesla', 'T'), ('Toyota', 'T'), ('Triumph', 'T'),('Volkswagen', 'V'), ('Volvo', 'V'),('Zenvo', 'Z'), ('Zastava', 'Z');
+INSERT 0 67
+keycloak=# INSERT INTO api_modele (nom_mod, idmar_id) VALUES-- Audi (id = 5 par exemple)('A1', 5), ('A3', 5), ('A4', 5), ('Q5', 5), ('Q7', 5),-- BMW (id = 6)('Série 1', 6), ('Série 3', 6), ('X3', 6), ('X5', 6),-- Toyota (id = 63)('Corolla', 63), ('Camry', 63), ('Hilux', 63), ('RAV4', 63),-- Mercedes-Benz (id = 41)('Classe A', 41), ('Classe C', 41), ('GLA', 41), ('GLE', 41),-- Peugeot (id = 50)('208', 50), ('308', 50), ('3008', 50), ('5008', 50),-- Renault (id = 53)('Clio', 53), ('Megane', 53), ('Captur', 53), ('Kadjar', 53),-- Volkswagen (id = 65)('Golf', 65), ('Passat', 65), ('Tiguan', 65), ('Polo', 65),-- Ford (id = 20)('Fiesta', 20), ('Focus', 20), ('Mustang', 20), ('Ranger', 20);
+keycloak-# hk
+keycloak-# INSERT INTO api_modele (nom_mod, idmar_id) VALUES ('A1', 5), ('A3', 5), ('A4', 5), ('Q5', 5), ('Q7', 5),-- BMW (id = 6)('Série 1', 6), ('Série 3', 6), ('X3', 6), ('X5', 6),-- Toyota (id = 63)('Corolla', 63), ('Camry', 63), ('Hilux', 63), ('RAV4', 63),-- Mercedes-Benz (id = 41)('Classe A', 41), ('Classe C', 41), ('GLA', 41), ('GLE', 41),-- Peugeot (id = 50)('208', 50), ('308', 50), ('3008', 50), ('5008', 50),-- Renault (id = 53)('Clio', 53), ('Megane', 53), ('Captur', 53), ('Kadjar', 53),-- Volkswagen (id = 65)('Golf', 65), ('Passat', 65), ('Tiguan', 65), ('Polo', 65),-- Ford (id = 20)('Fiesta', 20), ('Focus', 20), ('Mustang', 20), ('Ranger', 20);
+keycloak-# INSERT INTO api_modele (nom_mod, idmar_id) VALUES('A1', 5), ('A3', 5), ('A4', 5), ('Q5', 5), ('Q7', 5),('Série 1', 6), ('Série 3', 6), ('X3', 6), ('X5', 6),('Corolla', 63), ('Camry', 63), ('Hilux', 63), ('RAV4', 63),('Classe A', 41), ('Classe C', 41), ('GLA', 41), ('GLE', 41),('208', 50), ('308', 50), ('3008', 50), ('5008', 50),('Clio', 53), ('Megane', 53), ('Captur', 53), ('Kadjar', 53),('Golf', 65), ('Passat', 65), ('Tiguan', 65), ('Polo', 65),('Fiesta', 20), ('Focus', 20), ('Mustang', 20), ('Ranger', 20),('C1', 13), ('C3', 13), ('C4', 13), ('C5 Aircross', 13), ('Berlingo', 13),('i10', 27), ('i20', 27), ('i30', 27), ('Tucson', 27), ('Santa Fe', 27),('Picanto', 31), ('Rio', 31), ('Ceed', 31), ('Sportage', 31), ('Sorento', 31),('Micra', 45), ('Juke', 45), ('Qashqai', 45), ('X-Trail', 45), ('Leaf', 45),('Civic', 24), ('Accord', 24), ('CR-V', 24), ('HR-V', 24), ('Jazz', 24);
+ERREUR:  erreur de syntaxe sur ou près de « hk »
+LINE 2: hk
+        ^
+keycloak=# INSERT INTO api_modele (nom_mod, idmar_id) VALUES('A1', 5), ('A3', 5), ('A4', 5), ('Q5', 5), ('Q7', 5),('Série 1', 6), ('Série 3', 6), ('X3', 6), ('X5', 6),('Corolla', 63), ('Camry', 63), ('Hilux', 63), ('RAV4', 63),('Classe A', 41), ('Classe C', 41), ('GLA', 41), ('GLE', 41),('208', 50), ('308', 50), ('3008', 50), ('5008', 50),('Clio', 53), ('Megane', 53), ('Captur', 53), ('Kadjar', 53),('Golf', 65), ('Passat', 65), ('Tiguan', 65), ('Polo', 65),('Fiesta', 20), ('Focus', 20), ('Mustang', 20), ('Ranger', 20),('C1', 13), ('C3', 13), ('C4', 13), ('C5 Aircross', 13), ('Berlingo', 13),('i10', 27), ('i20', 27), ('i30', 27), ('Tucson', 27), ('Santa Fe', 27),('Picanto', 31), ('Rio', 31), ('Ceed', 31), ('Sportage', 31), ('Sorento', 31),('Micra', 45), ('Juke', 45), ('Qashqai', 45), ('X-Trail', 45), ('Leaf', 45),('Civic', 24), ('Accord', 24), ('CR-V', 24), ('HR-V', 24), ('Jazz', 24);
+INSERT 0 58
+keycloak=# INSERT INTO api_modele (nom_mod, idmar_id) VALUES('Model S', 64), ('Model 3', 64), ('Model X', 64), ('Model Y', 64), ('Cybertruck', 64),('CX-3', 39), ('CX-5', 39), ('Mazda3', 39), ('Mazda6', 39), ('MX-5', 39);
+INSERT 0 10
+keycloak=# INSERT INTO modele (nom_mod, marque_id) VALUES('500', 19),('Tiggo 7', 23),('Ocean', 21);
+ERREUR:  la relation « modele » n'existe pas
+LINE 1: INSERT INTO modele (nom_mod, marque_id) VALUES('500', 19),('...
+                    ^
+keycloak=# INSERT INTO api_modele (nom_mod, idmar_id) VALUES('500', 19),('Tiggo 7', 23),('Ocean', 21);
+INSERT 0 3
+keycloak=# INSERT INTO categorie_vehicule (code, nom_cat, description) VALUES
+keycloak-# ('A : Mini-citadines'),
+keycloak-# ('B : itadines polyvalentes'),
+keycloak-# ('C : Compactes'),
+keycloak-# ('D : Familiales'),
+keycloak-# ('E : Routières / Prestige'),
+keycloak-# ('F : Luxe'),
+keycloak-# ('J : SUV / 4x4'),
+keycloak-# ('M : Monospaces / MPV'),
+keycloak-# ('S : Sportives'),
+keycloak-# ('VU : Véhicules utilitaires'),
+keycloak-# ('PL : Poids lourds'),
+keycloak-# ('TC : Engins de chantier'),
+keycloak-# ('AG : Engins agricoles'),
+keycloak-# ('2R : Deux-roues'),
+keycloak-# ('3R : Trois-roues'),
+keycloak-# ('BUS : Transport en commun'),
+keycloak-# ('SP : Véhicules spécialisés');
+ERREUR:  la relation « categorie_vehicule » n'existe pas
+LINE 1: INSERT INTO categorie_vehicule (code, nom_cat, description) ...
+                    ^
+keycloak=# INSERT INTO api_categorie (code_cat) VALUES ('A : Mini-citadines'),('B : itadines polyvalentes'),('C : Compactes'),('D : Familiales'),('E : Routières / Prestige'),('F : Luxe'),('J : SUV / 4x4'),('M : Monospaces / MPV'),('S : Sportives'),('VU : Véhicules utilitaires'),('PL : Poids lourds'),('TC : Engins de chantier'),('AG : Engins agricoles'),('2R : Deux-roues'),('3R : Trois-roues'),('BUS : Transport en commun'),('SP : Véhicules spécialisés');
+ERREUR:  valeur trop longue pour le type character varying(5)
+keycloak=# INSERT INTO api_categorie (code_cat) VALUES ('A : Mini-citadines'),('B : itadines polyvalentes'),('C : Compactes'),('D : Familiales'),('E : Routières / Prestige'),('F : Luxe'),('J : SUV / 4x4'),('M : Monospaces / MPV'),('S : Sportives'),('VU : Véhicules utilitaires'),('PL : Poids lourds'),('TC : Engins de chantier'),('AG : Engins agricoles'),('2R : Deux-roues'),('3R : Trois-roues'),('BUS : Transport en commun'),('SP : Véhicules spécialisés');
+INSERT 0 17
+keycloak=# INSERT INTO api_carrosserie (code_car) VALUES('Berline'),('Break'),('Coupé'),('Cabriolet'),('Monospace'),('SUV'),('Pick-up'),('Fourgonnette'),('Van'),('Roadster'),('Limousine'),('Camion'),('Bus'),('Minibus'),('Tracteur routier'),('Engin de chantier'),('Engin agricole'),('Moto'),('Scooter'),('Tricycle motorisé');
+ERREUR:  la relation « api_carrosserie » n'existe pas
+LINE 1: INSERT INTO api_carrosserie (code_car) VALUES('Berline'),('B...
+                    ^
+keycloak=# INSERT INTO api_carosserie (code_car) VALUES('Berline'),('Break'),('Coupé'),('Cabriolet'),('Monospace'),('SUV'),('Pick-up'),('Fourgonnette'),('Van'),('Roadster'),('Limousine'),('Camion'),('Bus'),('Minibus'),('Tracteur routier'),('Engin de chantier'),('Engin agricole'),('Moto'),('Scooter'),('Tricycle motorisé');
+INSERT 0 20
+keycloak=# INSERT INTO carrosserie_vehicule (nom_carrosserie) VALUES('Berline'),('Break'),('Coupé'),('Cabriolet'),('Monospace'),('SUV'),('Pick-up'),('Fourgonnette'),('Van'),('Roadster'),('Limousine'),('Camion'),('Bus'),('Minibus'),('Tracteur routier'),('Engin de chantier'),('Engin agricole'),('Moto'),('Scooter'),('Tricycle motorisé');
+INSERT INTO carburant_vehicule (nom_carburant) VALUES
+('Essence SP95'),
+('Essence SP98'),
+('Essence E5'),
+('Essence E10'),
+('Superéthanol E85'),
+('Diesel B7'),
+('Diesel B10'),
+('Diesel B30'),
+('Diesel XTL'),
+('Gazole Non Routier (GNR)'),
+('GPL (Gaz de Pétrole Liquéfié)'),
+('GNV (Gaz Naturel pour Véhicules)'),
+('CNG (Gaz Naturel Comprimé)'),
+('LNG (Gaz Naturel Liquéfié)'),
+('Hydrogène (H2)'),
+('Bioéthanol'),
+('Biodiesel'),
+('Huile végétale brute'),
+('Algocarburant'),
+('Biogaz');
+     c’est pour créer un formulaire ou alimenter une base de données, je peux aussi t’aider à structurer ça en SQL ou dans une interface.
+
+Tu veux que je t’aide à générer un modèle dynamique pour remplir ce genre de données automatiquement ?🟪 Carte violette
+
+    Numéro carte : CV-0089423
+
+    Date délivrance carte : 2024-09-15
+
+🏢 Centre de visite
+
+    Centre sélectionné : Centre Technique Mahitsy — RN4, Lot II
+
+    ou, si c’est un centre personnalisé :
+
+        Nom du centre : Centre privé Fandrosoana
+
+        Adresse : Rue Andrianampoinimerina, Mahitsy
+
+👤 Opérateur
+
+    Nom de l’opérateur : RANDRIANARISON Feno
+
+🔍 Contrôle technique
+
+    Véhicule : AB-1234-MG
+
+    Date visite : 2025-07-10
+
+    Date validité : 2026-07-10
+
+    Numéro PV : PV-5218-CT
+
+    Aptitude : Apte
+
+    Date délivrance contrôle : 2025-07-12
+
+    Fréquence (mois) : 12
+
+💸 Reçu de contrôle
+
+    Numéro reçu : RC-001257
+
+    Date reçu : 2025-07-12
+
+    Montant droit : 25000 MGA
+
+    Montant PV : 10000 MGA
+
+    Montant carte : 5000 MGA
+
+    Montant TVA : 6400 MGA (calculé automatiquement)
+
+    Montant HT : 40000 MGA (hors taxes)
+
+    Montant total : 46400 MGA
+
+Si tu veux, je peux te fournir un objet form complet à utiliser dans ton code React ou t’expliquer comment les montants sont calculés automatiquement (TVA, total, etc.). Tu veux qu’on fasse ça ? 😊
