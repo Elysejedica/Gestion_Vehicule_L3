@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Proprietaire,Marque,Vehicule,Carosserie,Carburant,Carteviolette,Categorie,vidange,Piece,Police, Modele,Agence,Assurance
+from .models import LocalUser,Marque,Vehicule,Carosserie,Carburant,Carteviolette,Categorie,vidange,Piece,Police, Modele,Agence,Assurance
 from .models import Trajet,Centrevisite,Controle,Cotisation,Operateur,Ravitailler,reparation,Recucontrole,StationService,DetailReparation,Sinistre
 from .models import LocalUser
 
@@ -8,9 +8,9 @@ class UserSerializer(serializers.ModelSerializer):
         model = LocalUser
         fields = '__all__'
 
-class ProprietaireSerializer(serializers.ModelSerializer):
+class LocalUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Proprietaire
+        model = LocalUser
         fields = '__all__'
 
 class MarqueSerializer(serializers.ModelSerializer):

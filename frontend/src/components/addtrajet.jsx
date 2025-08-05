@@ -61,7 +61,7 @@ const AddTrajet = () => {
     });
   }, []);
 const vehiculeChoisi = vehicules.find(v => v.idveh === form.idveh);
-const proprietaireEmail = vehiculeChoisi?.proprietaire?.email;
+const localUserEmail = vehiculeChoisi?.localUser?.email;
 
   useEffect(() => {
     if (form.idveh) {
@@ -73,7 +73,7 @@ const proprietaireEmail = vehiculeChoisi?.proprietaire?.email;
 
       setVidangeRequise(besoinVidange);
       setDistanceCumulative(cumulKm);
-      setAlerteVidange(besoinVidange ? `⚠️ ${cumulKm} km — Vidange requise !` : '');
+      setAlerteVidange(besoinVidange ? `${cumulKm} km — Vidange requise !` : '');
 
       if (besoinVidange && savedStatus !== 'true') {
         setTimeout(() => {
@@ -103,7 +103,7 @@ const proprietaireEmail = vehiculeChoisi?.proprietaire?.email;
     localStorage.setItem(`vidangeEffectuee_${form.idveh}`, 'true');
     setDistanceHistorique(prev => ({ ...prev, [form.idveh]: 0 }));
     setDistanceCumulative(0);
-    showSnackbar("✅ Vidange enregistrée. Vous pouvez maintenant ajouter un trajet.");
+    showSnackbar("Vidange enregistrée. Vous pouvez maintenant ajouter un trajet.");
     rechargerVehicules();
   };
 
@@ -135,30 +135,30 @@ const proprietaireEmail = vehiculeChoisi?.proprietaire?.email;
       const totalKm = (distanceHistorique[vehiculeId] || 0) + km;
 
       if (totalKm >= 5000) {
-        setAlerteVidange(`⚠️ ${totalKm} km — Vidange requise !`);
+        setAlerteVidange(`${totalKm} km — Vidange requise !`);
         setDistanceHistorique(prev => ({ ...prev, [vehiculeId]: 0 }));
         setDistanceCumulative(0);
         setVidangeRequise(true);
         setVidangeEffectuee(false);
         localStorage.setItem(`vidangeEffectuee_${vehiculeId}`, 'false');
-        showSnackbar(`⚠️ Vidange requise pour ${vehiculeId}. Distance remise à zéro.`);
+        showSnackbar(`Vidange requise pour ${vehiculeId}. Distance remise à zéro.`);
       } else {
         setDistanceHistorique(prev => ({ ...prev, [vehiculeId]: totalKm }));
         setDistanceCumulative(totalKm);
         setAlerteVidange('');
-        showSnackbar(`✅ Trajet ajouté pour ${vehiculeId}. Total : ${totalKm} km`);
+        showSnackbar(`Trajet ajouté pour ${vehiculeId}. Total : ${totalKm} km`);
       }
-       if (proprietaireEmail) {
+       if (localUserEmail) {
         try {
-          await envoyerEmailAlerte(form.idveh, proprietaireEmail);
-          showSnackbar(`📩 Alerte vidange envoyée à ${proprietaireEmail}`);
+          await envoyerEmailAlerte(form.idveh, localUserEmail);
+          showSnackbar(`Alerte vidange envoyée à ${localUserEmail}`);
         } catch (err) {
           console.error("Erreur envoi email :", err);
-          showSnackbar("❌ Échec envoi email au propriétaire", "error");
+          showSnackbar("Échec envoi email au propriétaire", "error");
         }
       }
     if (vidangeRequise && !vidangeEffectuee) {
-      showSnackbar("❌ Vidange requise avant d'ajouter un trajet", "error");
+      showSnackbar("Vidange requise avant d'ajouter un trajet", "error");
       return;
     }
       setForm({
@@ -175,7 +175,7 @@ const proprietaireEmail = vehiculeChoisi?.proprietaire?.email;
       setDistance(0);
     } catch (err) {
       console.error("Erreur :", err);
-      showSnackbar("❌ Échec ajout trajet", "error");
+      showSnackbar("Échec ajout trajet", "error");
     }
   };
 
@@ -242,7 +242,7 @@ const proprietaireEmail = vehiculeChoisi?.proprietaire?.email;
 
       <Box sx={{ textAlign: 'center', mb: 4 }}>
         <Button type="submit" variant="contained" size="large" disabled={vidangeRequise && !vidangeEffectuee}>
-          ➕ Ajouter Trajet
+          Ajouter Trajet
         </Button>
       </Box>
 

@@ -19,7 +19,7 @@ class LocalUser(models.Model):
     first_name = models.CharField(max_length=30, blank=True, null=True)
     last_name = models.CharField(max_length=150, blank=True, null=True)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='user')
-    keycloak_id = models.CharField(max_length=100, unique=True, null=True, blank=True)
+    idpro = models.CharField(max_length=100, unique=True, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -29,14 +29,14 @@ class Categorie(models.Model):
     idcat = models.AutoField(primary_key=True)
     code_cat = models.CharField(max_length=50)
 
-class Proprietaire(models.Model):
-    idpro = models.AutoField(primary_key=True)
-    nom = models.CharField(max_length=100)
-    adresse = models.CharField(max_length=100)
-    commune = models.CharField(max_length=150)
-    profession = models.CharField(max_length=60)
-    tel = models.CharField(max_length=20)
-    email = models.EmailField(max_length=100, null=True, blank=True)
+# class Proprietaire(models.Model):
+#     idpro = models.AutoField(primary_key=True)
+#     nom = models.CharField(max_length=100)
+#     adresse = models.CharField(max_length=100)
+#     commune = models.CharField(max_length=150)
+#     profession = models.CharField(max_length=60)
+#     tel = models.CharField(max_length=20)
+#     email = models.EmailField(max_length=100, null=True, blank=True)
 
 class Marque(models.Model):
     idmar = models.AutoField(primary_key=True)
@@ -62,7 +62,7 @@ class Vehicule(models.Model):
     idveh = models.AutoField(primary_key=True)
     num_imm = models.CharField(max_length=10)
     idmod = models.ForeignKey(Modele, on_delete=models.CASCADE)
-    idpro = models.ForeignKey(Proprietaire, on_delete=models.CASCADE)
+    idpro = models.ForeignKey(LocalUser, on_delete=models.CASCADE)
     idcarb = models.ForeignKey(Carburant, on_delete=models.CASCADE)
     idcar = models.ForeignKey(Carosserie, on_delete=models.CASCADE)
     idmar = models.ForeignKey(Marque, on_delete=models.CASCADE, null=True, blank=True)

@@ -6,7 +6,7 @@ import { getCategories } from '../services/categorieservices';
 import { getModeles } from '../services/modeleservices';
 import { getCarosseries } from '../services/carosserieservices';
 import { getCarburants} from '../services/carburantservices';
-import { getProprietaires } from '../services/proprietaireservices';
+import { getKeycloakUsers } from '../services/localUserservices';
 import { useParams } from 'react-router-dom';
 import { getVehicule} from '../services/vehiculeservices';
 
@@ -18,7 +18,7 @@ const ModifVehiculePage = () => {
   const [carburants, setCarburants] = React.useState([]);
   const [categories, setCategories] = React.useState([]);
   const [carosseries, setCarosseries] = React.useState([]);
-  const [proprietaires, setProprietaires] = React.useState([]);
+  const [localUsers, setLocalUsers] = React.useState([]);
 
  React.useEffect(() => {
   async function fetchData() {
@@ -28,7 +28,7 @@ const ModifVehiculePage = () => {
     const carb = await getCarburants();
     const cat = await getCategories();
     const caross = await getCarosseries();
-    const prop = await getProprietaires();
+    const prop = await getKeycloakUsers();
 
     console.log("Véhicule :", v);
     console.log("Modèles :", mod);
@@ -44,7 +44,7 @@ const ModifVehiculePage = () => {
     setCarburants(carb?.data || carb);
     setCategories(cat?.data || cat);
     setCarosseries(caross?.data || caross);
-    setProprietaires(prop?.data || prop);
+    setLocalUsers(prop?.data || prop);
   }
   fetchData();
 }, [idveh]);
@@ -56,7 +56,7 @@ const ModifVehiculePage = () => {
       vehicule={vehicule}
       modeles={modeles} marques={marques}
       carburants={carburants} categories={categories}
-      carosseries={carosseries} proprietaires={proprietaires}
+      carosseries={carosseries} localUsers={localUsers}
       setModeles={setModeles} setMarques={setMarques}
       setCategories={setCategories} setCarosseries={setCarosseries}
       setCarburants={setCarburants}

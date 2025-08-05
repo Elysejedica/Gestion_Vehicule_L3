@@ -2,6 +2,6 @@
 import api from './api';
 
 export const getModeles = () => api.get('modeles/');
-export const getProprietaires = () => api.get('proprietaires/');
+export const getLocalUsers = () => api.get('localUsers/');
 export const getCarburants = () => api.get('carburants/');
 export const getCarosseries = () => api.get('carosseries/');

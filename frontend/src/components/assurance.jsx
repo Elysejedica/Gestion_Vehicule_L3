@@ -90,9 +90,9 @@ const [form, setForm] = useState({
       setAssurances(prev => [...prev, ajoutée]);
       setForm(prev => ({ ...prev, idass: ajoutée.idass }));
       setSelectedAssurance('');
-      showSnackbar('✅ Assurance ajoutée avec succès !');
+      showSnackbar('Assurance ajoutée avec succès !');
     } catch {
-      showSnackbar('❌ Erreur ajout assurance', 'error');
+      showSnackbar('Erreur ajout assurance', 'error');
     }
   };
 
@@ -105,9 +105,9 @@ const [form, setForm] = useState({
       setAgences(prev => [...prev, ajoutée]);
       setForm(prev => ({ ...prev, idag: ajoutée.idag }));
       setSelectedAgence('');
-      showSnackbar('🏢 Agence ajoutée avec succès !');
+      showSnackbar('Agence ajoutée avec succès !');
     } catch {
-      showSnackbar('❌ Erreur ajout agence', 'error');
+      showSnackbar('Erreur ajout agence', 'error');
     }
   };
 
@@ -145,7 +145,7 @@ const [form, setForm] = useState({
           description: form.description_sinistre,
           montant_rembourse: form.montant_rembourse
         });
-        showSnackbar('⚠️ Sinistre enregistré avec succès');
+        showSnackbar('Sinistre enregistré avec succès');
       }
 //enregistrement cotisation    
     await createCotisation({
@@ -195,7 +195,7 @@ const [form, setForm] = useState({
         <>
           <TextField label="Nom assurance" name="nom_ass" fullWidth onChange={handleChange} sx={{ mb: 2 }} />
           <TextField label="Code assurance" name="code_ass" fullWidth onChange={handleChange} sx={{ mb: 2 }} />
-          <Button variant="contained" onClick={handleAddAssurance}>➕ Ajouter assurance</Button>
+          <Button variant="contained" onClick={handleAddAssurance}> Ajouter assurance</Button>
         </>
       )}
 
@@ -238,7 +238,7 @@ const [form, setForm] = useState({
                 sx={{ mb: 2 }}
               />
               <Button variant="contained" onClick={handleAddAgence}>
-                ➕ Ajouter agence
+                Ajouter agence
               </Button>
             </>
           )}
@@ -274,7 +274,7 @@ const [form, setForm] = useState({
         </FormControl>
 
       </AnimatedSection>
-      <AnimatedSection title="⚠️ Sinistre">
+      <AnimatedSection title="Sinistre">
         <TextField
           label="Date du sinistre"
           name="date_sinistre"
@@ -338,7 +338,7 @@ const [form, setForm] = useState({
 
       <Box sx={{ textAlign: 'center', mb: 4 }}>
         <Button variant="contained" size="large" type="submit">
-          ✅ Enregistrer tout
+          Enregistrer tout
         </Button>
       </Box>
 

@@ -18,7 +18,7 @@ class KeycloakAuthentication(BaseAuthentication):
             user_info = keycloak.get_user_info(token)
 
             user, created = LocalUser.objects.get_or_create(
-                keycloak_id=user_info['sub'],
+                idpro=user_info['sub'],
                 defaults={
                     'email': user_info.get('email', ''),
                     'first_name': user_info.get('given_name', ''),

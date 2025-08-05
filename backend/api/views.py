@@ -3,7 +3,7 @@ import requests
 from rest_framework.response import Response
 from rest_framework import status, viewsets
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.http import JsonResponse
 import logging
 
@@ -27,7 +27,7 @@ from .serializers import (
     AssuranceSerializer,
     MarqueSerializer,
     ModeleSerializer,
-    ProprietaireSerializer,
+    LocalUserSerializer,
     VehiculeSerializer,
     CartevioletteSerializer,
     vidangeSerializer,
@@ -36,7 +36,7 @@ from .serializers import (
     SinistreSerializer
 )
 from .models import (
-    Proprietaire, Marque, Vehicule, Carosserie, Carburant, Categorie, Agence,
+    LocalUser, Marque, Vehicule, Carosserie, Carburant, Categorie, Agence,
     Assurance, Carteviolette, vidange, Piece, Police, Modele, DetailReparation, Sinistre,
     Trajet, Centrevisite, Controle, Cotisation, Operateur, Ravitailler, reparation,
     Recucontrole, StationService, LocalUser
@@ -62,8 +62,8 @@ def register(request):
             if field not in data:
                 return Response({"error": f"Le champ {field} est requis."}, status=status.HTTP_400_BAD_REQUEST)
 
-        try:
-            keycloak_id = keycloak_service.create_user(
+        try: 
+            idpro = keycloak_service.create_user(
                 username=data['username'],
                 email=data['email'],
                 password=data['password'],
@@ -71,7 +71,7 @@ def register(request):
                 last_name=data['last_name'],
                 role=data['role']
             )
-            logger.info(f"User created in Keycloak with ID: {keycloak_id}")
+            logger.info(f"User created in Keycloak with ID: {idpro}")
         except requests.exceptions.HTTPError as e:
             if e.response.status_code == 403:
                 return Response({"error": "Accès refusé à Keycloak."}, status=status.HTTP_403_FORBIDDEN)
@@ -85,7 +85,7 @@ def register(request):
                 email=data['email'],
                 first_name=data['first_name'],
                 last_name=data['last_name'],
-                keycloak_id=keycloak_id,
+                idpro=idpro,
                 role=data['role']
             )
         except Exception as e:
@@ -114,12 +114,12 @@ def login(request):
         user_info = keycloak_service.get_user_info(token_data['access_token'])
 
         user, created = LocalUser.objects.get_or_create(
-            keycloak_id=user_info['sub'],
+            idpro=user_info['sub'],
             defaults={
                 'email': user_info.get('email', ''),
                 'first_name': user_info.get('given_name', ''),
                 'last_name': user_info.get('family_name', ''),
-                'keycloak_id': user_info['sub'],
+                'idpro': user_info['sub'],                
             }
         )
 
@@ -139,9 +139,9 @@ def get_distance_cumulee(request, id_vehicule):
     return Response({'total': total})
 
 
-class ProprietaireViewSet(viewsets.ModelViewSet):
-    queryset = Proprietaire.objects.all()
-    serializer_class = ProprietaireSerializer
+class LocalUserViewSet(viewsets.ModelViewSet):
+    queryset = LocalUser.objects.all()
+    serializer_class = LocalUserSerializer
 
 class MarqueViewSet(viewsets.ModelViewSet):
     queryset = Marque.objects.all()
@@ -234,3 +234,20 @@ class DetailReparationViewSet(viewsets.ModelViewSet):
 class SinistreViewSet(viewsets.ModelViewSet):
     queryset = Sinistre.objects.all()
     serializer_class = SinistreSerializer
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def keycloak_users(request):
+    users = keycloak_service.get_all_users()  # Méthode à adapter selon votre service Keycloak
+    # Filtrez et formatez les données selon vos besoins
+    result = [
+        {
+            "id": user.get("id"),
+            "username": user.get("username"),
+            "email": user.get("email"),
+            "firstName": user.get("firstName"),
+            "lastName": user.get("lastName"),
+        }
+        for user in users
+    ]
+    return Response(result)

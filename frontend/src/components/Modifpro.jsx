@@ -4,20 +4,20 @@ import {
 } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { useNavigate } from 'react-router-dom';
-import { updateProprietaire } from '../services/proprietaireservices';
+import { updateLocalUser } from '../services/localUserservices';
 
 const Alert = React.forwardRef((props, ref) => (
   <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
 ));
 
-const ModifProprietaire = ({ proprietaire }) => {
+const ModifLocalUser = ({ localUser }) => {
   const navigate = useNavigate();
   const [form, setForm] = useState(null);
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
 
   useEffect(() => {
-    if (proprietaire) setForm({ ...proprietaire });
-  }, [proprietaire]);
+    if (localUser) setForm({ ...localUser });
+  }, [localUser]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,7 +38,7 @@ const ModifProprietaire = ({ proprietaire }) => {
     }
 
     try {
-      await updateProprietaire(form.idpro, form);
+      await updateLocalUser(form.idpro, form);
       showSnackbar("✅ Propriétaire modifié avec succès !");
       setTimeout(() => navigate('/Liste-pro'), 2000);
     } catch (error) {
@@ -71,6 +71,6 @@ const ModifProprietaire = ({ proprietaire }) => {
   );
 };
 
-export default ModifProprietaire;
+export default ModifLocalUser;
 
 

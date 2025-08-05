@@ -7,10 +7,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 
-import { getProprietaires,deleteProprietaire } from '../services/proprietaireservices';
+import { getKeycloakUsers,deleteLocalUser } from '../services/localUserservices';
 
-const ProprietaireTable = () => {
-  const [proprietaires, setProprietaires] = useState([]);
+const LocalUserTable = () => {
+  const [localUsers, setLocalUsers] = useState([]);
   const isMobile = useMediaQuery('(max-width:768px)');
   const navigate = useNavigate();
 
@@ -19,18 +19,18 @@ const ProprietaireTable = () => {
   }, []);
 
   const fetchData = () => {
-    getProprietaires().then(res => setProprietaires(res.data));
+    getKeycloakUsers().then(res => setLocalUsers(res.data));
   };
 
-  const handleEditClick = (proprietaire) => {
-    navigate(`/modifier/${proprietaire.idpro}`);
+  const handleEditClick = (localUser) => {
+    navigate(`/modifier/${localUser.idpro}`);
   };
 
-  const handleDeleteClick = async (proprietaire) => {
-    const confirmation = window.confirm(`Supprimer le propriétaire avec l'ID : ${proprietaire.idpro} ?`);
+  const handleDeleteClick = async (localUser) => {
+    const confirmation = window.confirm(`Supprimer le propriétaire avec l'ID : ${localUser.idpro} ?`);
     if (confirmation) {
       try {
-        await deleteProprietaire(proprietaire.idpro);
+        await deleteLocalUser(localUser.idpro);
         alert('Propriétaire supprimé !');
         fetchData();
       } catch {
@@ -57,17 +57,17 @@ const ProprietaireTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {proprietaires.map(proprietaire => (
-              <TableRow key={proprietaire.idpro}>
-                <TableCell>{proprietaire.nom}</TableCell>
-                <TableCell>{proprietaire.adresse}</TableCell>
-                <TableCell>{proprietaire.commune}</TableCell>
-                <TableCell>{proprietaire.profession}</TableCell>
-                <TableCell>{proprietaire.tel}</TableCell>
-                <TableCell>{proprietaire.email || '—'}</TableCell>
+            {localUsers.map(localUser => (
+              <TableRow key={localUser.idpro}>
+                <TableCell>{localUser.nom}</TableCell>
+                <TableCell>{localUser.adresse}</TableCell>
+                <TableCell>{localUser.commune}</TableCell>
+                <TableCell>{localUser.profession}</TableCell>
+                <TableCell>{localUser.tel}</TableCell>
+                <TableCell>{localUser.email || '—'}</TableCell>
                 <TableCell>
-                  <IconButton size="small" onClick={() => handleEditClick(proprietaire)}><EditIcon /></IconButton>
-                  <IconButton size="small" onClick={() => handleDeleteClick(proprietaire)} color="error"><DeleteIcon /></IconButton>
+                  <IconButton size="small" onClick={() => handleEditClick(localUser)}><EditIcon /></IconButton>
+                  <IconButton size="small" onClick={() => handleDeleteClick(localUser)} color="error"><DeleteIcon /></IconButton>
                 </TableCell>
               </TableRow>
             ))}
@@ -78,5 +78,5 @@ const ProprietaireTable = () => {
   );
 };
 
-export default ProprietaireTable;
+export default LocalUserTable;
 

@@ -63,7 +63,7 @@ const AddRavitailleur = () => {
       setCarburantSaisie(false);
       showSnackbar('Carburant ajouté !');
     } catch {
-      showSnackbar('❌ Erreur carburant', 'error');
+      showSnackbar('Erreur carburant', 'error');
     }
   };
 
@@ -77,7 +77,7 @@ const AddRavitailleur = () => {
       setStationSaisie(false);
       showSnackbar(' Station ajoutée !');
     } catch {
-      showSnackbar('❌ Erreur station', 'error');
+      showSnackbar('Erreur station', 'error');
     }
   };
 
@@ -88,9 +88,9 @@ const AddRavitailleur = () => {
     e.preventDefault();
     try {
       await createRavitailleur(form);
-      showSnackbar('✅ Ravitaillement enregistré avec succès');
+      showSnackbar('Ravitaillement enregistré avec succès');
     } catch {
-      showSnackbar('🚨 Échec de l’enregistrement', 'error');
+      showSnackbar('Échec de l’enregistrement', 'error');
     }
   };
 
@@ -169,7 +169,7 @@ const AddRavitailleur = () => {
       </AnimatedSection>
 
       <Box sx={{ textAlign: 'center', mb: 4 }}>
-        <Button type="submit" variant="contained" size="large">✅ Enregistrer</Button>
+        <Button type="submit" variant="contained" size="large">Enregistrer</Button>
       </Box>
         
       <Snackbar

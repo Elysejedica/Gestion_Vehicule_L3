@@ -11,7 +11,7 @@ import { getCategories, createCategorie } from '../services/categorieservices';
 import { getModeles, createModele } from '../services/modeleservices';
 import { getCarosseries, createCarosserie } from '../services/carosserieservices';
 import { getCarburants, createCarburant } from '../services/carburantservices';
-import { getProprietaires } from '../services/proprietaireservices';
+import { getKeycloakUsers } from '../services/localUserservices';
 
 const Alert = React.forwardRef((props, ref) => (
   <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
@@ -27,15 +27,22 @@ const AnimatedSection = ({ title, children }) => (
 );
 
 const AddVehiculeForm = () => {
-  const [form, setForm] = useState({ num_imm: '', idmod: '', idpro: '', idproNom: '', idcar: '', idcarb: '', idmar: '', idcat: '', num_serie: '', num_moteur: '', puissance: '', places: '',cylindre:'',image:'',poids_ch: '', poids_vide: '', charge_utile: '', date_circulation: '', date_immatriculation: '', date_emission: '', annee: '', type: '' });
+  const [form, setForm] = useState({
+     num_imm: '', idmod: '', idpro: '', idproNom: '', 
+     idcar: '', idcarb: '', idmar: '', idcat: '', 
+     num_serie: '', num_moteur: '', puissance: '', places: '', 
+     cylindre:'',image:'',poids_ch: '', poids_vide: '', charge_utile: '', 
+     date_circulation: '', date_immatriculation: '', 
+     date_emission: '', annee: '', type: '' 
+    });
   const [modeles, setModeles] = useState([]);
   const [modelesFiltrés, setModelesFiltrés] = useState([]);
   const [carburants, setCarburants] = useState([]);
-  const [proprietaires, setProprietaires] = useState([]);
+  const [localUsers, setLocalUsers] = useState([]);
   const [carrosseries, setCarrosseries] = useState([]);
   const [marques, setMarques] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [filteredProprietaires, setFilteredProprietaires] = useState([]);
+  const [filteredLocalUsers, setFilteredLocalUsers] = useState([]);
   const [comboSaisieEnCours, setComboSaisieEnCours] = useState("");
   const [nouvelleValeurCombo, setNouvelleValeurCombo] = useState("");
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
@@ -70,7 +77,9 @@ const placeholders = {
     getCategories().then(res => setCategories(res.data));
     getModeles().then(res => setModeles(res.data));
     getCarburants().then(res => setCarburants(res.data));
-    getProprietaires().then(res => setProprietaires(res.data));
+    getKeycloakUsers().then(res => {
+      setLocalUsers(res.data); // Utilisateurs Keycloak
+    });
     getCarosseries().then(res => setCarrosseries(res.data));
   }, []);
 
@@ -132,7 +141,7 @@ const handleImageUpload = async (e) => {
     if (name === "date_emission") {
       const d1 = new Date(value), d2 = new Date(form.date_immatriculation), d3 = new Date(form.date_circulation);
       if (d1 && (d1 < d2 || d1 < d3)) {
-        showSnackbar("❌ La date d'émission ne peut pas être antérieure aux autres dates.", "error");
+        showSnackbar("La date d'émission ne peut pas être antérieure aux autres dates.", "error");
         updatedForm.date_emission = "";
       }
     }
@@ -199,30 +208,22 @@ const handleImageUpload = async (e) => {
       </AnimatedSection>
 
       <AnimatedSection title="Propriétaire">
-        <TextField label="Rechercher un propriétaire" name="idproNom" fullWidth value={form.idproNom}
-          onChange={(e) => {
-            const input = e.target.value.toLowerCase();
-            setForm(prev => ({ ...prev, idproNom: input }));
-            const suggestions = proprietaires.filter(p =>
-              p.nom.toLowerCase().includes(input)
-            );
-            setFilteredProprietaires(suggestions);
+        <Autocomplete
+          options={localUsers}
+          getOptionLabel={option => option.nom || option.username || ""}
+          value={localUsers.find(u => u.idpro === form.idpro) || null}
+          onChange={(event, newValue) => {
+            setForm(prev => ({
+              ...prev,
+              idpro: newValue ? newValue.idpro : "",
+              idproNom: newValue ? (newValue.nom || newValue.username) : ""
+            }));
           }}
-          sx={{ mb: 2 }} />
-        {filteredProprietaires.length > 0 && (
-          <Paper sx={{ maxHeight: 150, overflow: 'auto', mb: 2 }}>
-            {filteredProprietaires.map(p => (
-              <Box key={p.idpro} sx={{ padding: 1, cursor: 'pointer', '&:hover': { backgroundColor: '#eee' } }}
-                onClick={() => {
-                  setForm(prev => ({ ...prev, idpro: p.idpro, idproNom: p.nom }));
-                  setFilteredProprietaires([]);
-                }}
-              >
-                {p.nom}
-              </Box>
-            ))}
-          </Paper>
-        )}
+          renderInput={(params) => (
+            <TextField {...params} label="Sélectionner un propriétaire" fullWidth sx={{ mb: 2 }} />
+          )}
+          isOptionEqualToValue={(option, value) => option.idpro === value.idpro}
+        />
       </AnimatedSection>
 
       <AnimatedSection title="Caractéristiques techniques">
@@ -288,9 +289,9 @@ const handleImageUpload = async (e) => {
                         setForm(prev => ({ ...prev, idmod: nouveauModele.idmod }));
                         setComboSaisieEnCours("");
                         setNouvelleValeurCombo("");
-                        showSnackbar("✅ Modèle ajouté !");
+                        showSnackbar("Modèle ajouté !");
                       } catch {
-                        showSnackbar("❌ Erreur lors de l’ajout du modèle", "error");
+                        showSnackbar("Erreur lors de l’ajout du modèle", "error");
                       }
                     }} > Ajouter </Button>
         </Box> ) : (
@@ -340,9 +341,9 @@ const handleImageUpload = async (e) => {
                           setForm(prev => ({ ...prev, idmar: nouvelleMarque.idmar }));
                           setComboSaisieEnCours("");
                           setNouvelleValeurCombo("");
-                          showSnackbar("✅ Marque ajoutée !");
+                          showSnackbar("Marque ajoutée !");
                         } catch {
-                          showSnackbar("❌ Erreur lors de l’ajout de la marque", "error");
+                          showSnackbar("Erreur lors de l’ajout de la marque", "error");
                         }
                       }} >Ajouter</Button>
             </Box>) : (

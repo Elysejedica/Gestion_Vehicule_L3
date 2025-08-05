@@ -2,18 +2,18 @@
 import React from 'react';
 import Modifpro from '../components/Modifpro';
 import { useParams } from 'react-router-dom';
-import { getProprietaire } from '../services/proprietaireservices';
+import { getLocalUser } from '../services/localUserservices';
 
 const ModifProPage = () => {
   const { idpro } = useParams(); // récupère l'id depuis l'URL
-  const [proprietaires, setProprietaire] = React.useState(null);
+  const [localUsers, setLocalUser] = React.useState(null);
 
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const prop = await getProprietaire(idpro);
+        const prop = await getLocalUser(idpro);
         console.log("Propriétaire :", prop);
-        setProprietaire(prop?.data || prop);
+        setLocalUser(prop?.data || prop);
       } catch (error) {
         console.error("Erreur lors du chargement du propriétaire :", error);
       }
@@ -21,10 +21,10 @@ const ModifProPage = () => {
     fetchData();
   }, [idpro]);
 
-  if (!proprietaires) return <p>⏳ Chargement du propriétaire...</p>;
+  if (!localUsers) return <p>⏳ Chargement du propriétaire...</p>;
 
   return (
-    <Modifpro proprietaires={proprietaires} />
+    <Modifpro localUsers={localUsers} />
   );
 };
 

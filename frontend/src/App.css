@@ -201,3 +201,12 @@ a{
   text-decoration-style: solid;
   text-decoration: none;
 }
+
+.login-card, .register-card{
+  text-align: center;
+}
+
+.login-logo {
+  width: 100px;
+  margin-bottom: 20px;
+}

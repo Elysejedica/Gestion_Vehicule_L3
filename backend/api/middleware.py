@@ -29,7 +29,7 @@ class KeycloakMiddleware:
                             'email': user_info.get('email', ''),
                             'first_name': user_info.get('given_name', ''),
                             'last_name': user_info.get('family_name', ''),
-                            'keycloak_id': user_info['sub'],
+                            'idpro': user_info['sub'],
                             'role': token_info.get('realm_access', {}).get('roles', ['utilisateur'])[0]
                         }
                     )

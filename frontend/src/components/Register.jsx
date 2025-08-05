@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiService } from '../apiService';
 import { Link } from 'react-router-dom';
+import logo from '../Images/logo.png';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,7 @@ const Register = () => {
     confirmPassword: '',
     firstName: '',
     lastName: '',
-    role: 'utilisateur'
+    role: 'user'
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -55,7 +56,8 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md register-card">
+        <img src={logo} alt="Logo" className="login-logo" />
         {error && (
           <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
             {error}
@@ -106,7 +108,7 @@ const Register = () => {
             onChange={handleChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           >
-            <option value="utilisateur">Utilisateur</option>
+            <option value="user">Utilisateur</option>
             <option value="mecanicien">Mécanicien</option>
             <option value="gestionnaire">Gestionnaire</option>
             <option value="admin">Administrateur</option>

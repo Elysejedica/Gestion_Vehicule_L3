@@ -9,7 +9,7 @@ import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 
 import AddVehicule from './components/addvehiculeform';
-import AddProprietaire from './components/addproprietaireform';
+import AddLocalUser from './components/addlocalUserform';
 import AddCentrevisite from './components/addcentrvisite';
 import Addtrajet from './components/addtrajet';
 import AddVidange from './components/addvidange';
@@ -20,7 +20,7 @@ import Assurance from './components/assurance';
 import CarteGriseList from './components/ListeVehicule';
 import ModifVehiculePage from './components/ModifVehiculePage';
 import ListAssurance from './components/Listeassurance';
-import Listproprietaire from './components/Listeproprietaire';
+import ListlocalUser from './components/ListelocalUser';
 import Listvisite from './components/Listevisitetech';
 import Listrajet from './components/Listetrajet';
 import ListVidange from './components/Listevidange';
@@ -242,7 +242,7 @@ function App() {
           <Routes>
             <Route path="/" element={<CarteGriseList />} />
             <Route path="/add" element={<AddVehicule />} />
-            <Route path="/add-proprietaire" element={<AddProprietaire />} />
+            <Route path="/add-localUser" element={<AddLocalUser />} />
             <Route path="/add-centrevisite" element={<AddCentrevisite />} />
             <Route path="/add-trajet" element={<Addtrajet />} />
             <Route path="/add-vidange" element={<AddVidange />} />
@@ -252,7 +252,7 @@ function App() {
             <Route path="/add-assurance" element={<Assurance />} />
             <Route path="/modifier/:idveh" element={<ModifVehiculePage />} />
             <Route path="/modifier/:idpro" element={<ModifProPage />} />
-            <Route path='/Liste-pro' element={<Listproprietaire/>}/>
+            <Route path='/Liste-pro' element={<ListlocalUser/>}/>
             <Route path='/Liste-ass' element={<ListAssurance/>}/>
             <Route path='/Liste-visite' element={<Listvisite/>}/>
             <Route path='/Liste-reparation' element={<ListReparation/>}/>

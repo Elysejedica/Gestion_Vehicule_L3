@@ -88,3 +88,26 @@ class KeycloakService:
             return user_info
         except Exception as e:
             raise Exception(f"Erreur lors de la récupération des informations utilisateur : {str(e)}")
+    
+    def get_all_users(self):
+        url = f"{self.config['SERVER_URL']}/admin/realms/{self.config['REALM_NAME']}/users"
+        headers = {
+            "Authorization": f"Bearer {self.get_admin_token()}",
+            "Content-Type": "application/json"
+        }
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        return response.json()
+
+    def get_admin_token(self):
+        # Méthode pour récupérer un token admin Keycloak
+        data = {
+            "grant_type": "password",
+            "client_id": "admin-cli",
+            "username": "superadmin",  # à adapter
+            "password": "admin123",  # à adapter
+        }
+        url = f"{self.config['SERVER_URL']}/realms/{self.config['REALM_NAME']}/protocol/openid-connect/token"
+        response = requests.post(url, data=data)
+        response.raise_for_status()
+        return response.json()["access_token"]

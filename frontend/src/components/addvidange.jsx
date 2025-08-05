@@ -53,18 +53,18 @@ const AddVidange = () => {
 const handleSubmit = async e => {
   e.preventDefault();
 
-  console.log("📦 Données à envoyer :", form);  // <= LOG ici
+  console.log("Données à envoyer :", form);  // <= LOG ici
 
   try {
     await createVidange(form);
-    showSnackbar("✅ Vidange enregistrée !");
+    showSnackbar("Vidange enregistrée !");
     setForm({
       idveh: '', date_vidange: '', type_huile: '',
       qtte_huile: '', prix_u_vidange: '', cout: ''
     });
   } catch (err) {
-    console.error("❌ Erreur API :", err.response?.data || err.message);
-    showSnackbar("❌ Erreur lors de l'ajout", "error");
+    console.error("Erreur API :", err.response?.data || err.message);
+    showSnackbar("Erreur lors de l'ajout", "error");
   }
 };
 
@@ -73,7 +73,7 @@ const handleSubmit = async e => {
 
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 700, margin: 'auto' }}>
-      <AnimatedSection title="🛢️ Informations Vidange">
+      <AnimatedSection title="Informations Vidange">
         <FormControl fullWidth sx={{ mb: 2 }}>
           <InputLabel>Véhicule</InputLabel>
           <Select name="idveh" value={form.idveh} onChange={handleChange} label="Véhicule">
@@ -110,7 +110,7 @@ const handleSubmit = async e => {
 
       <Box sx={{ textAlign: 'center', mb: 4 }}>
         <Button type="submit" variant="contained" size="large">
-          ➕ Ajouter Vidange
+          Ajouter Vidange
         </Button>
       </Box>
 

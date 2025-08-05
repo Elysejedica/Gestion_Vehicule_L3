@@ -2,8 +2,8 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from .views import (
-    hello_api, register, login,
-    ProprietaireViewSet, MarqueViewSet, VehiculeViewSet, CarosserieViewSet,
+    hello_api, keycloak_users, register, login,
+    LocalUserViewSet, MarqueViewSet, VehiculeViewSet, CarosserieViewSet,
     CarburantViewSet, DetailReparationViewSet, CategorieViewSet, AgenceViewSet,
     AssuranceViewSet, CartevioletteViewSet, VidangeViewSet, PieceViewSet,
     PoliceViewSet, ModeleViewSet, TrajetViewSet, CentrevisiteViewSet,
@@ -12,7 +12,7 @@ from .views import (
 )
 
 router = DefaultRouter()
-router.register(r'proprietaires', ProprietaireViewSet)
+router.register(r'localusers', LocalUserViewSet)
 router.register(r'marques', MarqueViewSet)
 router.register(r'vehicules', VehiculeViewSet)
 router.register(r'carrosseries', CarosserieViewSet)
@@ -41,5 +41,6 @@ urlpatterns = [
     path('auth/register/', register),
     path('auth/login/', login),
     path('hello/', hello_api),
-    path('', include(router.urls)),  # inclut toutes les routes ViewSet automatiquement
+    path('keycloak-users/', keycloak_users),  # Ajoutez cette ligne
+    path('', include(router.urls)),
 ]

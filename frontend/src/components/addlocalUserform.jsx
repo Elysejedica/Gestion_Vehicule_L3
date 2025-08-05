@@ -5,7 +5,7 @@ import {
 import MuiAlert from '@mui/material/Alert';
 import { motion } from 'framer-motion';
 
-import { createProprietaire } from '../services/proprietaireservices';
+import { createLocalUser } from '../services/localUserservices';
 
 const Alert = React.forwardRef((props, ref) => (
   <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
@@ -20,7 +20,7 @@ const AnimatedSection = ({ title, children }) => (
   </motion.div>
 );
 
-const AddProprietaire = ({ onProprioCreated }) => {
+const AddLocalUser = ({ onProprioCreated }) => {
   const [form, setForm] = useState({
     nom: '', adresse: '', commune: '', profession: '', tel: '', email: ''
   });
@@ -64,13 +64,13 @@ const AddProprietaire = ({ onProprioCreated }) => {
     if (!validate()) return;
 
     try {
-      const res = await createProprietaire(form);
-      showSnackbar("✅ Propriétaire ajouté avec succès");
+      const res = await createLocalUser(form);
+      showSnackbar("Propriétaire ajouté avec succès");
       if (onProprioCreated) onProprioCreated(res.data);
       setForm({ nom: '', adresse: '', commune: '', profession: '', tel: '', email: '' });
     } catch (err) {
       console.error(err);
-      showSnackbar("❌ Erreur lors de l'ajout", "error");
+      showSnackbar("Erreur lors de l'ajout", "error");
     }
   };
 
@@ -103,7 +103,7 @@ const AddProprietaire = ({ onProprioCreated }) => {
 
       <Box sx={{ textAlign: 'center', mb: 4 }}>
         <Button type="submit" variant="contained" size="large">
-          📝 Enregistrer
+          Enregistrer
         </Button>
       </Box>
 
@@ -123,5 +123,5 @@ const AddProprietaire = ({ onProprioCreated }) => {
   );
 };
 
-export default AddProprietaire;
+export default AddLocalUser;
 

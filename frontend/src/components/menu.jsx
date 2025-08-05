@@ -37,7 +37,7 @@ const Layout = ({ children, handleLogout }) => {
         <ListItemIcon><DirectionsCarIcon /></ListItemIcon>
         <ListItemText primary="Ajout Véhicule" />
       </ListItem>
-      <ListItem button component={Link} to="/add-proprietaire">
+      <ListItem button component={Link} to="/add-localUser">
         <ListItemIcon><PersonIcon /></ListItemIcon>
         <ListItemText primary="Propriétaire" />
       </ListItem>

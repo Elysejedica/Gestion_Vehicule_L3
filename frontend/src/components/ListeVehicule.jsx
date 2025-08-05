@@ -9,7 +9,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { getVehicules, deleteVehicule } from '../services/vehiculeservices';
 import { getModeles } from '../services/modeleservices';
-import { getProprietaires } from '../services/proprietaireservices';
+import { getKeycloakUsers } from '../services/localUserservices';
 import { getCarburants } from '../services/carburantservices';
 import { getMarques } from '../services/marqueservices';
 import { getCategories } from '../services/categorieservices';
@@ -19,7 +19,7 @@ import ModifVehicule from './modifvehicule'; // ← Assure-toi que ce chemin est
 const VehiculeTable = () => {
   const [vehicules, setVehicules] = useState([]);
   const [modeles, setModeles] = useState([]);
-  const [proprietaires, setProprietaires] = useState([]);
+  const [localUsers, setLocalUsers] = useState([]);
   const [carburants, setCarburants] = useState([]);
   const [marques, setMarques] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -35,7 +35,7 @@ const VehiculeTable = () => {
   const fetchData = () => {
     getVehicules().then(res => setVehicules(res.data));
     getModeles().then(res => setModeles(res.data));
-    getProprietaires().then(res => setProprietaires(res.data));
+    getKeycloakUsers().then(res => setLocalUsers(res.data));
     getCarburants().then(res => setCarburants(res.data));
     getMarques().then(res => setMarques(res.data));
     getCategories().then(res => setCategories(res.data));
@@ -123,7 +123,7 @@ const VehiculeTable = () => {
               carburants={carburants}
               categories={categories}
               carosseries={carosseries}
-              proprietaires={proprietaires}
+              localUsers={localUsers}
               setModeles={setModeles}
               setMarques={setMarques}
               setCategories={setCategories}

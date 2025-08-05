@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../Images/logo.png';
 //import './login.css';
 
 const Login = ({ loginForm, loading, handleInputChange, handleLogin }) => {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h2 className="login-title">Connexion</h2>
+        {/* image */}
+        <img src={logo} alt="Logo" className="login-logo" />
         <form onSubmit={handleLogin}>
           <input
             type="text"

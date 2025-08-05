@@ -16,13 +16,13 @@ const ModifVehicule = ({
   carburants: carburantsProp = [],
   categories: categoriesProp = [],
   carosseries: carosseriesProp = [],
-  proprietaires: proprietairesProp = [],
+  localUsers: localUsersProp = [],
   createModele,
   createMarque,
   createCategorie,
   createCarosserie,
   createCarburant,
-  createProprietaire,
+  createLocalUser,
   onClose
 }) => {
   const location = useLocation();
@@ -35,7 +35,7 @@ const ModifVehicule = ({
   const [categories, setCategories] = useState(categoriesProp);
   const [carosseries, setCarosseries] = useState(carosseriesProp);
   const [carburants, setCarburants] = useState(carburantsProp);
-  const [proprietaires, setProprietaires] = useState(proprietairesProp);
+  const [localUsers, setLocalUsers] = useState(localUsersProp);
 
   const [marquesFiltres, setMarquesFiltres] = useState([]);
   const [modelesFiltres, setModelesFiltres] = useState([]);
@@ -202,11 +202,11 @@ const ModifVehicule = ({
       <Typography variant="h5" gutterBottom>Modification</Typography>
       <Box sx={{ mb: 2 }}>
           <Autocomplete
-            value={proprietaires.find(p => p.idpro === form.idpro) || null}
+            value={localUsers.find(p => p.idpro === form.idpro) || null}
             onChange={(event, newValue) => {
               setForm(prev => ({ ...prev, idpro: newValue ? newValue.idpro : "" }));
             }}
-            options={proprietaires}
+            options={localUsers}
             getOptionLabel={(option) => option.nom}
             renderInput={(params) => <TextField {...params} label="Propriétaire" fullWidth />}
             isOptionEqualToValue={(option, value) => option?.idpro === value?.idpro}

@@ -63,13 +63,13 @@ const AddPieceAndReparation = () => {
     e.preventDefault();
     try {
       const res = await createPiece(pieceForm);
-      showSnackbar('🧩 Pièce enregistrée');
+      showSnackbar('Pièce enregistrée');
       setShowPieceForm(false);
       setPieceForm({ nom_piece: '', description: '', prix_unitaire: '', quantite_stock: '' });
       refreshPieces();
       setReparationForm(prev => ({ ...prev, idpiece: res.data.idpiece }));
     } catch {
-      showSnackbar('❌ Erreur enregistrement pièce', 'error');
+      showSnackbar('Erreur enregistrement pièce', 'error');
     }
   };
 
@@ -93,7 +93,7 @@ const handleReparationSubmit = async e => {
       quantite: reparationForm.quantite
     });
 
-    showSnackbar(`🔧 Réparation enregistrée. Coût total : ${cout_total} €`);
+    showSnackbar(`Réparation enregistrée. Coût total : ${cout_total} €`);
 
     // Réinitialiser le formulaire
     setReparationForm({
@@ -102,7 +102,7 @@ const handleReparationSubmit = async e => {
     });
   } catch (err) {
     console.error(err);
-    showSnackbar('❌ Erreur enregistrement réparation', 'error');
+    showSnackbar('Erreur enregistrement réparation', 'error');
   }
 };
 
@@ -148,7 +148,7 @@ const handleReparationSubmit = async e => {
             value={reparationForm.cout_main_oeuvre} onChange={handleReparationChange} sx={{ mb: 2 }} />
 
           <Box sx={{ textAlign: 'center' }}>
-            <Button type="submit" variant="contained" size="large">✅ Ajouter réparation</Button>
+            <Button type="submit" variant="contained" size="large">Ajouter réparation</Button>
           </Box>
         </Box>
       </AnimatedSection>
